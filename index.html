@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     
     <style>
+        /* 💡 Impostazioni base del body per eliminare lo scorrimento e centrare */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -15,27 +16,23 @@
             background-color: #DFDDF2;
             height: 100vh;
             width: 100vw;
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden; /* CRUCIALE: Rimuove la barra di scorrimento */
         }
         
-        /* Stile per tutte le sezioni */
-        #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
+        /* 💡 Stile per tutte le sezioni: tutte nello stesso punto, ma non visibili */
+        .sezione {
             min-height: 100vh;
             width: 100vw;
-            display: none; /* Tutte nascoste di default */
-            flex-direction: column; 
-            justify-content: center;
-            align-items: center;
-            /* ✨ FIX: Posizionamento assoluto per sovrapporre e mostrare una sola "pagina" */
+            /* Usiamo il posizionamento assoluto per sovrapporre tutte le sezioni */
             position: absolute; 
             top: 0;
             left: 0;
-            flex-shrink: 0; 
-            background-color: #DFDDF2; 
+            /* Tutte le sezioni sono invisibili (display: none) tranne quella attiva */
+            display: none; 
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            background-color: #DFDDF2;
         }
         
         /* La sezione attiva viene mostrata */
@@ -43,7 +40,7 @@
             display: flex;
         }
 
-        /* FONT E COLORE CORRETTI PER IL TITOLO */
+        /* Stili rimanenti (già corretti) */
         h1 {
             font-size: 2.5em; 
             font-family: 'Pacifico', cursive;
@@ -51,38 +48,27 @@
             margin-bottom: 30px; 
             z-index: 1; 
         }
-        
-        /* Stile generale per elementi cliccabili */
         .pulsante {
             cursor: pointer;
             margin: 20px;
             z-index: 2; 
             transition: transform 0.1s ease, box-shadow 0.3s ease; 
         }
-
-        /* Effetto di reazione al mouse/tocco */
         .pulsante:active {
             transform: scale(0.98);
         }
-        
         img {
             width: 180px; 
             border-radius: 10px; 
-            box-shadow: 0 0 0 3px #F6B6C6; /* Cornice "neon" rosa */
+            box-shadow: 0 0 0 3px #F6B6C6; 
         }
-
-        /* Stile specifico per il gattino iniziale */
         #pagina-iniziale img {
             width: 220px;
             transition: all 0.3s ease;
         }
-        
-        /* Effetto visivo quando passi il mouse sul gattino */
         #pagina-iniziale img:hover {
             box-shadow: 0 0 15px 5px #F6B6C6; 
         }
-
-        /* Stile per l'emoji 🙀 in pagina-emoji */
         #pagina-emoji .pulsante[style] {
             font-size: 4em;
             box-shadow: 0 0 0 3px #F6B6C6;
@@ -93,7 +79,6 @@
         #pagina-emoji .pulsante[style]:hover {
             box-shadow: 0 0 15px 5px #F6B6C6; 
         }
-
         button {
             font-size: 2em;
             padding: 10px 20px;
@@ -113,6 +98,7 @@
     </style>
 </head>
 <body>
+    
     <div id="pagina-iniziale" class="sezione attiva">
         <h1>Non cliccare il gattino!</h1>
         <img src="gattini.jpg" alt="Gattino" class="pulsante" onclick="mostraSezione('pagina-emoji')">
@@ -153,12 +139,6 @@
             // Mostra la sezione desiderata
             document.getElementById(id).classList.add('attiva');
         }
-
-        // ✨ ISTRUZIONE CHIAVE: Assicura che la pagina iniziale sia mostrata all'avvio
-        document.addEventListener('DOMContentLoaded', () => {
-             // Non è più necessario se la classe è nell'HTML, ma la lasciamo per ridondanza
-             // mostraSezione('pagina-iniziale'); 
-        });
     </script>
 </body>
 </html>
