@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Non Cliccare il gattino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0; /* Rimuovo margini */
-            padding: 0; /* Rimuovo padding */
-            background-color: #DFDDF2; /* Colore su tutta la pagina */
-            height: 100vh; /* Altezza totale della finestra */
+            margin: 0;
+            padding: 0;
+            background-color: #DFDDF2;
+            height: 100vh;
         }
-        /* Stile per tutte le sezioni */
+        
+        /* Stile per tutte le sezioni: usa flex-direction column per centrare verticalmente e disporre gli elementi in pila */
         #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
-            min-height: 100vh; /* Assicura che le sezioni riempiano l'altezza */
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
         }
+        
         /* Nascondi tutte le sezioni tranne quella attiva */
         .sezione {
             display: none;
@@ -28,75 +32,82 @@
         .sezione.attiva {
             display: flex;
         }
+
+        /* NUOVO FONT E COLORE PER IL TITOLO */
         h1 {
-            font-size: 2em;
-            color: #333;
+            font-size: 2.5em; 
+            font-family: 'Pacifico', cursive; /* Font carino */
+            color: #E5A8B1; /* Colore richiesto */
+            margin-bottom: 30px; 
         }
+        
         .pulsante {
             cursor: pointer;
             margin: 20px;
         }
+        
         img {
-            width: 150px; /* Dimensione immagine personalizzabile */
+            width: 180px; 
             cursor: pointer;
-            /* Aggiungo un fallback per visibilità */
-            border: 2px solid #000; /* Contorno per debug */
+            border: 4px solid #DFDDF2; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
         }
+
+        /* Stile specifico per il gattino iniziale (un po' più grande) */
+        #pagina-iniziale img {
+            width: 200px;
+        }
+
         button {
             font-size: 2em;
             padding: 10px 20px;
             cursor: pointer;
-            background-color: #DFDDF2;
+            background-color: #E5A8B1; 
+            color: white; 
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #d1979d; 
         }
     </style>
 </head>
 <body>
-    <!-- Sezione iniziale -->
     <div id="pagina-iniziale" class="sezione attiva">
         <h1>Non cliccare il gattino!</h1>
         <img src="gattini.jpg" alt="Gattino" class="pulsante" onclick="mostraSezione('pagina-emoji')">
     </div>
 
-    <!-- Sezione emoji -->
     <div id="pagina-emoji" class="sezione">
-        <div class="photo" id="photo1">
-            <img src="riccio.JPG" alt="Riccio" class="pulsante" onclick="mostraSezione('messaggio1')">
-        </div>
-        <div class="photo" id="photo2">
-            <img src="pappagallo.jpg" alt="Pappagallo" class="pulsante" onclick="mostraSezione('messaggio2')">
-        </div>
-        <div class="photo" id="photo3">
-            <div class="pulsante" onclick="mostraSezione('messaggio3')">🙀</div>
-        </div>
+        <img src="riccio.JPG" alt="Riccio" class="pulsante" onclick="mostraSezione('messaggio1')">
+        <img src="pappagallo.jpg" alt="Pappagallo" class="pulsante" onclick="mostraSezione('messaggio2')">
+        <div class="pulsante" onclick="mostraSezione('messaggio3')" style="font-size: 4em;">🙀</div>
     </div>
 
-    <!-- Sezione messaggio 1 -->
     <div id="messaggio1" class="sezione">
         <h1>Messaggio 1</h1>
         <p>Ciao mondo</p>
-        <button onclick="mostraSezione('pagina-emoji')">😻</button>
+        <button onclick="mostraSezione('pagina-emoji')">Torna Indietro 😻</button>
     </div>
 
-    <!-- Sezione messaggio 2 -->
     <div id="messaggio2" class="sezione">
         <h1>Messaggio 2</h1>
         <p>Ciao mondo</p>
-        <button onclick="mostraSezione('pagina-emoji')">😻</button>
+        <button onclick="mostraSezione('pagina-emoji')">Torna Indietro 😻</button>
     </div>
 
-    <!-- Sezione messaggio 3 -->
     <div id="messaggio3" class="sezione">
         <h1>Messaggio 3</h1>
         <p>Ciao mondo</p>
-        <button onclick="mostraSezione('pagina-emoji')">😻</button>
+        <button onclick="mostraSezione('pagina-emoji')">Torna Indietro 😻</button>
     </div>
 
     <script>
         // Funzione per mostrare una sezione e nascondere le altre
         function mostraSezione(id) {
-            console.log("Cliccato, mostrando sezione: " + id); // Debug
+            console.log("Cliccato, mostrando sezione: " + id);
             // Nascondi tutte le sezioni
             document.querySelectorAll('.sezione').forEach(sezione => {
                 sezione.classList.remove('attiva');
