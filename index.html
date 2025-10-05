@@ -8,19 +8,25 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            padding: 50px;
+            margin: 0; /* Rimuovo margini */
+            padding: 0; /* Rimuovo padding */
+            background-color: #DFDDF2; /* Colore su tutta la pagina */
+            height: 100vh; /* Altezza totale della finestra */
         }
         /* Stile per tutte le sezioni */
         #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
-            background-color: #DFDDF2; /* Colore sfondo per tutte le sezioni */
+            min-height: 100vh; /* Assicura che le sezioni riempiano l'altezza */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         /* Nascondi tutte le sezioni tranne quella attiva */
         .sezione {
             display: none;
         }
         .sezione.attiva {
-            display: block;
+            display: flex;
         }
         h1 {
             font-size: 2em;
@@ -94,6 +100,7 @@
             });
             // Mostra la sezione desiderata
             document.getElementById(id).classList.add('attiva');
-
-            // Suono al clic su pulsante
-            play
+        }
+    </script>
+</body>
+</html>
