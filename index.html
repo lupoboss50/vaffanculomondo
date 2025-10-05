@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non Cliccare il Gattino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 50px;
+        }
+        /* Stile per la sezione iniziale */
+        #pagina-iniziale {
+            background-color: #ABA1C6; /* Colore pagina principale */
+        }
+        /* Stile per la sezione emoji e messaggi */
+        #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
+            background-color: #f0f0f0; /* Sfondo neutro, aspetto tuo colore */
+        }
+        /* Nascondi tutte le sezioni tranne quella attiva */
+        .sezione {
+            display: none;
+        }
+        .sezione.attiva {
+            display: block;
+        }
+        h1 {
+            font-size: 2em;
+            color: #333;
+        }
+        .gattino {
+            font-size: 100px;
+            cursor: pointer;
+        }
+        video {
+            display: none; /* Nascosto finché non clicchi */
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .photo {
+            display: none; /* Emoji nascoste all'inizio */
+            margin: 20px;
+        }
+        .emoji {
+            font-size: 80px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        button {
+            font-size: 2em;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #ABA1C6;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sezione iniziale -->
+    <div id="pagina-iniziale" class="sezione attiva">
+        <h1>Non cliccare il gattino!</h1>
+        <div class="gattino" onclick="playVideo()">😺</div>
+        <video id="video" src="video.mp4" controls></video>
+    </div>
+
+    <!-- Sezione emoji -->
+    <div id="pagina-emoji" class="sezione">
+        <div class="photo" id="photo1">
+            <div class="emoji" onclick="mostraSezione('messaggio1')">😸</div>
+            <p>Frase 1: [Aspetto la tua frase]</p>
+        </div>
+        <div class="photo" id="photo2">
+            <div class="emoji" onclick="mostraSezione('messaggio2')">😿</div>
+            <p>Frase 2: [Aspetto la tua frase]</p>
+        </div>
+        <div class="photo" id="photo3">
+            <div class="emoji" onclick="mostraSezione('messaggio3')">🙀</div>
+            <p>Frase 3: [Aspetto la tua frase]</p>
+        </div>
+    </div>
+
+    <!-- Sezione messaggio 1 -->
+    <div id="messaggio1" class="sezione">
+        <h1>Messaggio 1</h1>
+        <p>[Aspetto il tuo messaggio]</p>
+        <button onclick="mostraSezione('pagina-emoji')">😻</button>
+    </div>
+
+    <!-- Sezione messaggio 2 -->
+    <div id="messaggio2" class="sezione">
+        <h1>Messaggio 2</h1>
+        <p>[Aspetto il tuo messaggio]</p>
+        <button onclick="mostraSezione('pagina-emoji')">😻</button>
+    </div>
+
+    <!-- Sezione messaggio 3 -->
+    <div id="messaggio3" class="sezione">
+        <h1>Messaggio 3</h1>
+        <p>[Aspetto il tuo messaggio]</p>
+        <button onclick="mostraSezione('pagina-emoji')">😻</button>
+    </div>
+
+    <script>
+        // Funzione per mostrare una sezione e nascondere le altre
+        function mostraSezione(id) {
+            // Nascondi tutte le sezioni
+            document.querySelectorAll('.sezione').forEach(sezione => {
+                sezione.classList.remove('attiva');
+            });
+            // Mostra la sezione desiderata
+            document.getElementById(id).classList.add('attiva');
+
+            // Se mostri la pagina emoji, avvia l'apparizione delle emoji
+            if (id === 'pagina-emoji') {
+                document.querySelectorAll('.photo').forEach(photo => {
+                    photo.style.display = 'none'; // Resetta le emoji
+                });
+                setTimeout(() => {
+                    document.getElementById('photo1').style.display = 'block';
+                }, 1000);
+                setTimeout(() => {
+                    document.getElementById('photo2').style.display = 'block';
+                }, 3000);
+                setTimeout(() => {
+                    document.getElementById('photo3').style.display = 'block';
+                }, 5000);
+            }
+        }
+
+        // Funzione per avviare il video e passare alla pagina emoji
+        function playVideo() {
+            const video = document.getElementById('video');
+            video.style.display = 'block'; // Mostra il video
+            video.play(); // Avvia il video
+            // Dopo 5 secondi, passa alla pagina emoji
+            setTimeout(() => {
+                mostraSezione('pagina-emoji');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
