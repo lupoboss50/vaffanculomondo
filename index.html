@@ -39,6 +39,8 @@
         img {
             width: 150px; /* Dimensione immagine personalizzabile */
             cursor: pointer;
+            /* Aggiungo un fallback per visibilità */
+            border: 2px solid #000; /* Contorno per debug */
         }
         button {
             font-size: 2em;
@@ -94,6 +96,7 @@
     <script>
         // Funzione per mostrare una sezione e nascondere le altre
         function mostraSezione(id) {
+            console.log("Cliccato, mostrando sezione: " + id); // Debug
             // Nascondi tutte le sezioni
             document.querySelectorAll('.sezione').forEach(sezione => {
                 sezione.classList.remove('attiva');
