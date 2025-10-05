@@ -44,10 +44,29 @@
         }
         
         /* -------------------------------------- */
+        /* PAGINA INIZIALE */
+        /* -------------------------------------- */
+        #pagina-iniziale h1 {
+            font-size: clamp(2em, 8vw, 2.5em);
+            font-family: 'Pacifico', cursive;
+            color: #E5A8B1;
+            margin-bottom: 5vh; 
+        }
+        #pagina-iniziale img {
+            width: clamp(180px, 60vw, 220px); 
+            border-radius: 10px; /* Ritorna quadrato per il gattino iniziale */
+            box-shadow: 0 0 0 3px #F6B6C6; 
+            transition: all 0.3s ease;
+        }
+        #pagina-iniziale img:hover {
+            box-shadow: 0 0 15px 5px #F6B6C6; 
+        }
+
+        /* -------------------------------------- */
         /* PAGINA INTERMEZZO "GOOD GIRL" */
         /* -------------------------------------- */
         #pagina-finale {
-            background-color: #B0B0B2; /* Sfondo Grigio scuro/pastello richiesto */
+            background-color: #B0B0B2; 
         }
         #pagina-finale .contenuto {
             display: flex;
@@ -55,14 +74,14 @@
             align-items: center;
         }
         #pagina-finale h2 {
-            font-family: 'Satisfy', cursive; /* Nuovo font carino */
-            font-size: clamp(3em, 12vw, 5em); /* Molto grande e reattivo */
-            color: #CE9C9D; /* Colore rosa pastello richiesto */
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* Leggera ombra */
-            margin-bottom: 50px; /* Spazio sotto il titolo */
+            font-family: 'Satisfy', cursive; 
+            font-size: clamp(3em, 12vw, 5em); 
+            color: #CE9C9D; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+            margin-bottom: 50px; 
         }
         #pagina-finale .avanti-btn {
-            font-size: 4em; /* Emoji grande */
+            font-size: 4em; 
             cursor: pointer;
             z-index: 20;
             transition: transform 0.1s ease;
@@ -72,18 +91,24 @@
         }
 
         /* -------------------------------------- */
-        /* STILI COMUNI E MESSAGGI */
+        /* PAGINA EMOJI (Galleria Animali) */
         /* -------------------------------------- */
-
-        /* Titoli Principali (solo Pagina Iniziale) */
-        #pagina-iniziale h1 {
-            font-size: clamp(2em, 8vw, 2.5em);
-            font-family: 'Pacifico', cursive;
-            color: #E5A8B1;
-            margin-bottom: 5vh; 
+        #pagina-emoji img {
+            width: 120px; /* Immagini più piccole */
+            height: 120px; /* Altezza fissa per il cerchio */
+            object-fit: cover; /* Assicura che l'immagine riempia il cerchio */
+            border-radius: 50%; /* Cerchio */
+            box-shadow: 0 0 0 3px #F6B6C6; 
+            margin: 15px; /* Spazio tra i pulsanti */
         }
-        
-        /* Contenitore Messaggio */
+        #pagina-emoji img:hover {
+            box-shadow: 0 0 15px 5px #F6B6C6; 
+        }
+
+
+        /* -------------------------------------- */
+        /* PAGINE MESSAGGIO (Riccio, Pipistrello, Gatto) */
+        /* -------------------------------------- */
         .contenitore-messaggio {
             width: 90vw;
             max-width: 500px;
@@ -92,27 +117,47 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between; /* Spazia gli elementi */
             min-height: 80vh;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative; /* Per posizionare l'immagine in basso a destra */
+            overflow: hidden; /* Nasconde l'immagine se esce */
         }
 
-        /* Titoli dei Messaggi */
+        /* Titoli dei Messaggi (nuovi colori e font più leggibile) */
         .contenitore-messaggio h1 {
-            font-family: 'Pacifico', cursive;
+            font-family: 'Pacifico', cursive; /* Mantiene Pacifico per coerenza sui titoli */
             font-size: clamp(1.8em, 6vw, 2.2em);
             text-transform: uppercase;
-            margin-top: 0;
-            margin-bottom: 20px;
+            margin-top: 10px; /* Meno margine sopra */
+            margin-bottom: 10px; /* Meno margine sotto */
+            color: #7a7a7a; /* Un grigio scuro, sta bene con tutti i colori pastello */
+            z-index: 2; /* Per essere sopra l'immagine se si sovrappongono */
         }
         
         /* Paragrafo del Messaggio */
         .contenitore-messaggio p {
+            font-family: Arial, sans-serif; /* Metti un font standard per la leggibilità del testo lungo */
             font-size: clamp(1em, 3.5vw, 1.2em);
-            margin: 20px 0;
-            padding: 0 10px;
-            line-height: 1.4;
+            margin: 15px 0;
+            padding: 0 15px;
+            line-height: 1.5;
             text-align: center;
+            z-index: 2;
+        }
+
+        /* ✨ NUOVO STILE: Immagine nella pagina Messaggio (VERDE) ✨ */
+        .contenitore-messaggio .img-sfondo-messaggio {
+            position: absolute;
+            bottom: 10px; /* Basso */
+            right: 10px; /* Destra */
+            width: 80px; /* Più piccola */
+            height: 80px;
+            border-radius: 50%; /* Tonda */
+            object-fit: cover;
+            opacity: 0.7; /* Leggermente trasparente */
+            box-shadow: none; /* Nessun neon su questa */
+            z-index: 1; /* Sotto il testo e il pulsante */
         }
 
         /* Pulsante Ritorno */
@@ -120,55 +165,41 @@
             font-size: 1.5em; 
             padding: 10px 20px;
             cursor: pointer;
+            background-color: #E5A8B1; 
             color: white; 
             border: none;
             border-radius: 10px;
             box-shadow: 0 0 0 3px #F6B6C6; 
             transition: background-color 0.3s, box-shadow 0.3s ease;
             margin-top: 20px;
+            z-index: 2;
         }
         .pulsante-ritorno:hover {
+            background-color: #d1979d; 
             box-shadow: 0 0 15px 5px #F6B6C6; 
         }
 
-        /* STILI PER GLI ANIMALI (COLORI) */
+        /* -------------------------------------- */
+        /* STILI SPECIFICI PER GLI ANIMALI (COLORI)*/
+        /* -------------------------------------- */
+
+        /* RICCIO */
         #messaggio1 .contenitore-messaggio { background-color: #F5E8C7; }
-        #messaggio1 h1 { color: #EAE2B7; } 
-        #messaggio1 p { color: #E3D9C9; font-weight: bold; }
+        #messaggio1 h1 { color: #8B7A60; } /* Titolo Riccio più scuro */
+        #messaggio1 p { color: #A09070; } /* Testo Riccio più scuro */
         #messaggio1 .pulsante-ritorno { background-color: #E5A8B1; } 
 
+        /* PIPISTRELLO */
         #messaggio2 .contenitore-messaggio { background-color: #D7BDE2; }
-        #messaggio2 h1 { color: #C6AEC6; } 
-        #messaggio2 p { color: #B8B8FF; font-weight: bold; }
+        #messaggio2 h1 { color: #7B688A; } /* Titolo Pipistrello più scuro */
+        #messaggio2 p { color: #8F8AA8; } /* Testo Pipistrello più scuro */
         #messaggio2 .pulsante-ritorno { background-color: #E5A8B1; } 
 
+        /* GATTO */
         #messaggio3 .contenitore-messaggio { background-color: #FFF8DC; }
-        #messaggio3 h1 { color: #BE986D; } 
-        #messaggio3 p { color: #D7BE82; font-weight: bold; }
+        #messaggio3 h1 { color: #A08050; } /* Titolo Gatto più scuro */
+        #messaggio3 p { color: #B59560; } /* Testo Gatto più scuro */
         #messaggio3 .pulsante-ritorno { background-color: #E5A8B1; } 
-
-        /* Stili per elementi cliccabili */
-        .pulsante {
-            cursor: pointer;
-            margin: 20px;
-            z-index: 20; 
-            transition: transform 0.1s ease, box-shadow 0.3s ease; 
-        }
-        .pulsante:active {
-            transform: scale(0.95);
-        }
-        img {
-            max-width: 90%; 
-            height: auto;
-            border-radius: 10px; 
-            box-shadow: 0 0 0 3px #F6B6C6; 
-        }
-        #pagina-iniziale img {
-            width: clamp(180px, 60vw, 220px); 
-        }
-        #pagina-iniziale img:hover {
-            box-shadow: 0 0 15px 5px #F6B6C6; 
-        }
     </style>
 </head>
 <body>
@@ -194,8 +225,8 @@
     <div id="messaggio1" class="sezione">
         <div class="contenitore-messaggio">
             <h1>Messaggio Riccio</h1>
-            <img src="riccio.JPG" alt="Riccio" class="img-animale">
             <p>Per te, che come un riccio ti chiudi per proteggerti dal mondo, sappi che la tua solitudine nasconde un cuore prezioso, pronto a fiorire quando troverai chi merita di vedere la tua luce.</p>
+            <img src="riccio.JPG" alt="Riccio" class="img-sfondo-messaggio">
             <button class="pulsante-ritorno" onclick="mostraSezione('pagina-emoji')">Torna Indietro 😻</button>
         </div>
     </div>
@@ -203,8 +234,8 @@
     <div id="messaggio2" class="sezione">
         <div class="contenitore-messaggio">
             <h1>Messaggio Pipistrello</h1>
-            <img src="pipistrello.PNG" alt="Pipistrello" class="img-animale">
             <p>A te, che come un pipistrello voli sicuro nel buio, il tuo coraggio illumina anche le notti più scure, e il tuo spirito libero è un canto d’amore per chi sa ascoltarti.</p>
+            <img src="pipistrello.PNG" alt="Pipistrello" class="img-sfondo-messaggio">
             <button class="pulsante-ritorno" onclick="mostraSezione('pagina-emoji')">Torna Indietro 😻</button>
         </div>
     </div>
@@ -212,8 +243,8 @@
     <div id="messaggio3" class="sezione">
         <div class="contenitore-messaggio">
             <h1>Messaggio Gatto</h1>
-            <img src="gatto.JPG" alt="Gatto" class="img-animale">
             <p>A te, che come un gatto cammini fiero nella tua indipendenza, il tuo mistero è un dono: ogni tuo passo silenzioso lascia un’impronta d’amore nel cuore di chi ti segue.</p>
+            <img src="gatto.JPG" alt="Gatto" class="img-sfondo-messaggio">
             <button class="pulsante-ritorno" onclick="mostraSezione('pagina-emoji')">Torna Indietro 😻</button>
         </div>
     </div>
