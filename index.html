@@ -10,14 +10,11 @@
             text-align: center;
             margin: 0;
             padding: 50px;
+            background-color: #ABA1C6; /* Colore su tutta la pagina */
         }
-        /* Stile per la sezione iniziale */
-        #pagina-iniziale {
-            background-color: #ABA1C6; /* Colore pagina principale */
-        }
-        /* Stile per la sezione emoji e messaggi */
-        #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
-            background-color: #f0f0f0; /* Sfondo neutro, aspetto tuo colore */
+        /* Stile per tutte le sezioni */
+        #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
+            background-color: #ABA1C6; /* Stesso colore per tutte le sezioni */
         }
         /* Nascondi tutte le sezioni tranne quella attiva */
         .sezione {
@@ -48,10 +45,6 @@
             font-size: 80px;
             cursor: pointer;
         }
-        p {
-            font-size: 1.2em;
-            color: #333;
-        }
         button {
             font-size: 2em;
             padding: 10px 20px;
@@ -74,15 +67,12 @@
     <div id="pagina-emoji" class="sezione">
         <div class="photo" id="photo1">
             <div class="emoji" onclick="mostraSezione('messaggio1')">😸</div>
-            <p>Frase 1: [Aspetto la tua frase]</p>
         </div>
         <div class="photo" id="photo2">
             <div class="emoji" onclick="mostraSezione('messaggio2')">😿</div>
-            <p>Frase 2: [Aspetto la tua frase]</p>
         </div>
         <div class="photo" id="photo3">
             <div class="emoji" onclick="mostraSezione('messaggio3')">🙀</div>
-            <p>Frase 3: [Aspetto la tua frase]</p>
         </div>
     </div>
 
@@ -117,19 +107,25 @@
             // Mostra la sezione desiderata
             document.getElementById(id).classList.add('attiva');
 
-            // Se mostri la pagina emoji, avvia l'apparizione delle emoji
+            // Suono al clic su emoji o pulsante
+            playSound('click.mp3');
+
+            // Se mostri la pagina emoji, avvia l'apparizione delle emoji con suoni
             if (id === 'pagina-emoji') {
                 document.querySelectorAll('.photo').forEach(photo => {
                     photo.style.display = 'none'; // Resetta le emoji
                 });
                 setTimeout(() => {
                     document.getElementById('photo1').style.display = 'block';
+                    playSound('pop.mp3');
                 }, 1000);
                 setTimeout(() => {
                     document.getElementById('photo2').style.display = 'block';
+                    playSound('pop.mp3');
                 }, 3000);
                 setTimeout(() => {
                     document.getElementById('photo3').style.display = 'block';
+                    playSound('pop.mp3');
                 }, 5000);
             }
         }
@@ -139,10 +135,19 @@
             const video = document.getElementById('video');
             video.style.display = 'block'; // Mostra il video
             video.play(); // Avvia il video
+            playSound('meow.mp3'); // Suono al clic iniziale
             // Dopo 5 secondi, passa alla pagina emoji
             setTimeout(() => {
                 mostraSezione('pagina-emoji');
             }, 5000);
+        }
+
+        // Funzione per riprodurre un suono
+        function playSound(soundFile) {
+            const audio = new Audio(soundFile);
+            audio.play().catch(error => {
+                console.log("Errore nel riprodurre l'audio: ", error);
+            });
         }
     </script>
 </body>
