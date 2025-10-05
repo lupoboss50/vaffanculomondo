@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Non Cliccare il Gattino</title>
+    <title>Non Cliccare il gattino</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 50px;
-            background-color: #ABA1C6; /* Colore su tutta la pagina */
         }
         /* Stile per tutte le sezioni */
         #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
-            background-color: #ABA1C6; /* Stesso colore per tutte le sezioni */
+            background-color: #DFDDF2; /* Colore sfondo per tutte le sezioni */
         }
         /* Nascondi tutte le sezioni tranne quella attiva */
         .sezione {
@@ -27,29 +26,19 @@
             font-size: 2em;
             color: #333;
         }
-        .gattino {
-            font-size: 100px;
+        .pulsante {
             cursor: pointer;
-        }
-        video {
-            display: none; /* Nascosto finché non clicchi */
-            width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-        .photo {
-            display: none; /* Emoji nascoste all'inizio */
             margin: 20px;
         }
-        .emoji {
-            font-size: 80px;
+        img {
+            width: 150px; /* Dimensione immagine personalizzabile */
             cursor: pointer;
         }
         button {
             font-size: 2em;
             padding: 10px 20px;
             cursor: pointer;
-            background-color: #ABA1C6;
+            background-color: #DFDDF2;
             border: none;
             border-radius: 5px;
         }
@@ -59,41 +48,40 @@
     <!-- Sezione iniziale -->
     <div id="pagina-iniziale" class="sezione attiva">
         <h1>Non cliccare il gattino!</h1>
-        <div class="gattino" onclick="playVideo()">😺</div>
-        <video id="video" src="video.mp4" controls></video>
+        <img src="gattini.jpg" alt="Gattino" class="pulsante" onclick="mostraSezione('pagina-emoji')">
     </div>
 
     <!-- Sezione emoji -->
     <div id="pagina-emoji" class="sezione">
         <div class="photo" id="photo1">
-            <div class="emoji" onclick="mostraSezione('messaggio1')">😸</div>
+            <img src="riccio.JPG" alt="Riccio" class="pulsante" onclick="mostraSezione('messaggio1')">
         </div>
         <div class="photo" id="photo2">
-            <div class="emoji" onclick="mostraSezione('messaggio2')">😿</div>
+            <img src="pappagallo.jpg" alt="Pappagallo" class="pulsante" onclick="mostraSezione('messaggio2')">
         </div>
         <div class="photo" id="photo3">
-            <div class="emoji" onclick="mostraSezione('messaggio3')">🙀</div>
+            <div class="pulsante" onclick="mostraSezione('messaggio3')">🙀</div>
         </div>
     </div>
 
     <!-- Sezione messaggio 1 -->
     <div id="messaggio1" class="sezione">
         <h1>Messaggio 1</h1>
-        <p>[Aspetto il tuo messaggio]</p>
+        <p>Ciao mondo</p>
         <button onclick="mostraSezione('pagina-emoji')">😻</button>
     </div>
 
     <!-- Sezione messaggio 2 -->
     <div id="messaggio2" class="sezione">
         <h1>Messaggio 2</h1>
-        <p>[Aspetto il tuo messaggio]</p>
+        <p>Ciao mondo</p>
         <button onclick="mostraSezione('pagina-emoji')">😻</button>
     </div>
 
     <!-- Sezione messaggio 3 -->
     <div id="messaggio3" class="sezione">
         <h1>Messaggio 3</h1>
-        <p>[Aspetto il tuo messaggio]</p>
+        <p>Ciao mondo</p>
         <button onclick="mostraSezione('pagina-emoji')">😻</button>
     </div>
 
@@ -107,48 +95,5 @@
             // Mostra la sezione desiderata
             document.getElementById(id).classList.add('attiva');
 
-            // Suono al clic su emoji o pulsante
-            playSound('click.mp3');
-
-            // Se mostri la pagina emoji, avvia l'apparizione delle emoji con suoni
-            if (id === 'pagina-emoji') {
-                document.querySelectorAll('.photo').forEach(photo => {
-                    photo.style.display = 'none'; // Resetta le emoji
-                });
-                setTimeout(() => {
-                    document.getElementById('photo1').style.display = 'block';
-                    playSound('pop.mp3');
-                }, 1000);
-                setTimeout(() => {
-                    document.getElementById('photo2').style.display = 'block';
-                    playSound('pop.mp3');
-                }, 3000);
-                setTimeout(() => {
-                    document.getElementById('photo3').style.display = 'block';
-                    playSound('pop.mp3');
-                }, 5000);
-            }
-        }
-
-        // Funzione per avviare il video e passare alla pagina emoji
-        function playVideo() {
-            const video = document.getElementById('video');
-            video.style.display = 'block'; // Mostra il video
-            video.play(); // Avvia il video
-            playSound('meow.mp3'); // Suono al clic iniziale
-            // Dopo 5 secondi, passa alla pagina emoji
-            setTimeout(() => {
-                mostraSezione('pagina-emoji');
-            }, 5000);
-        }
-
-        // Funzione per riprodurre un suono
-        function playSound(soundFile) {
-            const audio = new Audio(soundFile);
-            audio.play().catch(error => {
-                console.log("Errore nel riprodurre l'audio: ", error);
-            });
-        }
-    </script>
-</body>
-</html>
+            // Suono al clic su pulsante
+            play
