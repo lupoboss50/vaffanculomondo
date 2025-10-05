@@ -14,28 +14,28 @@
             padding: 0;
             background-color: #DFDDF2;
             height: 100vh;
-            width: 100vw; /* Assicuriamo che il body occupi l'intera larghezza */
-            overflow: hidden; /* Nasconde le barre di scorrimento: cruciale per la navigazione a "pagine" */
-            display: flex; /* Permette al body di gestire il layout delle sezioni */
-            flex-direction: column; /* Le sezioni si disporranno verticalmente nel body */
-            justify-content: center; /* Centra il contenuto del body */
-            align-items: center; /* Centra il contenuto del body */
+            width: 100vw;
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         /* Stile per tutte le sezioni */
         #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
             min-height: 100vh;
-            width: 100vw; /* Ogni sezione occupa tutta la larghezza */
-            display: none; /* Inizialmente tutte nascoste */
+            width: 100vw;
+            display: none; /* Tutte nascoste di default */
             flex-direction: column; 
             justify-content: center;
             align-items: center;
-            position: absolute; /* Posizionamento assoluto per sovrapporre le sezioni */
+            /* ✨ FIX: Posizionamento assoluto per sovrapporre e mostrare una sola "pagina" */
+            position: absolute; 
             top: 0;
             left: 0;
-            /* ✨ FIX: Evita che le sezioni si riducano o si spostino */
             flex-shrink: 0; 
-            background-color: #DFDDF2; /* Garantiamo che ogni sezione abbia il suo sfondo */
+            background-color: #DFDDF2; 
         }
         
         /* La sezione attiva viene mostrata */
@@ -49,14 +49,14 @@
             font-family: 'Pacifico', cursive;
             color: #E5A8B1;
             margin-bottom: 30px; 
-            z-index: 1; /* Assicuriamo che il titolo sia sopra allo sfondo */
+            z-index: 1; 
         }
         
         /* Stile generale per elementi cliccabili */
         .pulsante {
             cursor: pointer;
             margin: 20px;
-            z-index: 2; /* I pulsanti devono essere sopra tutti gli altri elementi */
+            z-index: 2; 
             transition: transform 0.1s ease, box-shadow 0.3s ease; 
         }
 
@@ -71,7 +71,7 @@
             box-shadow: 0 0 0 3px #F6B6C6; /* Cornice "neon" rosa */
         }
 
-        /* Stile specifico per il gattino iniziale (più grande e con effetto hover) */
+        /* Stile specifico per il gattino iniziale */
         #pagina-iniziale img {
             width: 220px;
             transition: all 0.3s ease;
@@ -79,19 +79,19 @@
         
         /* Effetto visivo quando passi il mouse sul gattino */
         #pagina-iniziale img:hover {
-            box-shadow: 0 0 15px 5px #F6B6C6; /* Ombra rosa più accentuata al hover */
+            box-shadow: 0 0 15px 5px #F6B6C6; 
         }
 
         /* Stile per l'emoji 🙀 in pagina-emoji */
-        #pagina-emoji .pulsante[style] { /* Selettore più specifico per l'emoji con stile inline */
+        #pagina-emoji .pulsante[style] {
             font-size: 4em;
-            box-shadow: 0 0 0 3px #F6B6C6; /* Cornice "neon" rosa per l'emoji */
-            border-radius: 10px; /* Per coerenza */
-            padding: 5px 10px; /* Aggiungi un po' di padding all'emoji per la cornice */
-            background-color: rgba(255, 255, 255, 0.5); /* Sfondo leggermente visibile per la cornice */
+            box-shadow: 0 0 0 3px #F6B6C6;
+            border-radius: 10px;
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.5); 
         }
         #pagina-emoji .pulsante[style]:hover {
-            box-shadow: 0 0 15px 5px #F6B6C6; /* Ombra rosa più accentuata al hover per l'emoji */
+            box-shadow: 0 0 15px 5px #F6B6C6; 
         }
 
         button {
@@ -102,13 +102,13 @@
             color: white; 
             border: none;
             border-radius: 10px;
-            box-shadow: 0 0 0 3px #F6B6C6; /* Cornice "neon" rosa per i bottoni */
+            box-shadow: 0 0 0 3px #F6B6C6; 
             transition: background-color 0.3s, box-shadow 0.3s ease;
-            z-index: 2; /* I bottoni devono essere sopra */
+            z-index: 2; 
         }
         button:hover {
             background-color: #d1979d; 
-            box-shadow: 0 0 15px 5px #F6B6C6; /* Ombra rosa più accentuata al hover */
+            box-shadow: 0 0 15px 5px #F6B6C6; 
         }
     </style>
 </head>
@@ -154,9 +154,10 @@
             document.getElementById(id).classList.add('attiva');
         }
 
-        // Mostra la pagina iniziale al caricamento
+        // ✨ ISTRUZIONE CHIAVE: Assicura che la pagina iniziale sia mostrata all'avvio
         document.addEventListener('DOMContentLoaded', () => {
-            mostraSezione('pagina-iniziale');
+             // Non è più necessario se la classe è nell'HTML, ma la lasciamo per ridondanza
+             // mostraSezione('pagina-iniziale'); 
         });
     </script>
 </body>
