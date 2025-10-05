@@ -14,16 +14,18 @@
             padding: 0;
             background-color: #DFDDF2;
             height: 100vh;
+            /* ✨ LA SOLUZIONE CHIAVE: Impedisce che il contenuto non attivo forzi lo scorrimento. */
+            overflow: hidden; 
         }
         
         /* Stile per tutte le sezioni */
         #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
             min-height: 100vh;
+            width: 100vw; /* Assicura che occupi tutta la larghezza */
             display: flex;
             flex-direction: column; 
             justify-content: center;
             align-items: center;
-            /* La posizione relativa è cruciale per z-index, anche se a volte non serve, la lasciamo per sicurezza */
             position: relative; 
         }
         
@@ -47,9 +49,8 @@
         .pulsante {
             cursor: pointer;
             margin: 20px;
-            /* Assicuriamo che gli elementi cliccabili abbiano la massima priorità */
             z-index: 10; 
-            transition: transform 0.1s ease; /* Aggiunto effetto visivo al clic */
+            transition: transform 0.1s ease; 
         }
 
         /* Effetto di reazione al mouse/tocco */
@@ -61,19 +62,19 @@
             width: 180px; 
             border: 4px solid #DFDDF2; 
             border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombra più netta */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
         }
 
-        /* Stile specifico per il gattino iniziale (più grande e con effetto hover) */
+        /* Stile specifico per il gattino iniziale */
         #pagina-iniziale img {
-            width: 220px; /* Ancora più grande per attirare l'attenzione */
-            border: 5px solid transparent; /* Contorno finto */
+            width: 220px;
+            border: 5px solid transparent; 
             transition: all 0.3s ease;
         }
         
         /* Effetto visivo quando passi il mouse sul gattino */
         #pagina-iniziale img:hover {
-            box-shadow: 0 0 20px rgba(229, 168, 177, 0.8); /* Ombra rosa che attira l'attenzione */
+            box-shadow: 0 0 20px rgba(229, 168, 177, 0.8);
         }
 
         button {
