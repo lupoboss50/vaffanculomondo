@@ -16,13 +16,15 @@
             height: 100vh;
         }
         
-        /* Stile per tutte le sezioni: usa flex-direction column per centrare verticalmente e disporre gli elementi in pila */
+        /* Stile per tutte le sezioni */
         #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
             min-height: 100vh;
             display: flex;
             flex-direction: column; 
             justify-content: center;
             align-items: center;
+            /* La posizione relativa è cruciale per z-index, anche se a volte non serve, la lasciamo per sicurezza */
+            position: relative; 
         }
         
         /* Nascondi tutte le sezioni tranne quella attiva */
@@ -33,30 +35,45 @@
             display: flex;
         }
 
-        /* NUOVO FONT E COLORE PER IL TITOLO */
+        /* FONT E COLORE CORRETTI PER IL TITOLO */
         h1 {
             font-size: 2.5em; 
-            font-family: 'Pacifico', cursive; /* Font carino */
-            color: #E5A8B1; /* Colore richiesto */
+            font-family: 'Pacifico', cursive;
+            color: #E5A8B1;
             margin-bottom: 30px; 
         }
         
+        /* Stile generale per elementi cliccabili */
         .pulsante {
             cursor: pointer;
             margin: 20px;
+            /* Assicuriamo che gli elementi cliccabili abbiano la massima priorità */
+            z-index: 10; 
+            transition: transform 0.1s ease; /* Aggiunto effetto visivo al clic */
+        }
+
+        /* Effetto di reazione al mouse/tocco */
+        .pulsante:active {
+            transform: scale(0.98);
         }
         
         img {
             width: 180px; 
-            cursor: pointer;
             border: 4px solid #DFDDF2; 
             border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombra più netta */
         }
 
-        /* Stile specifico per il gattino iniziale (un po' più grande) */
+        /* Stile specifico per il gattino iniziale (più grande e con effetto hover) */
         #pagina-iniziale img {
-            width: 200px;
+            width: 220px; /* Ancora più grande per attirare l'attenzione */
+            border: 5px solid transparent; /* Contorno finto */
+            transition: all 0.3s ease;
+        }
+        
+        /* Effetto visivo quando passi il mouse sul gattino */
+        #pagina-iniziale img:hover {
+            box-shadow: 0 0 20px rgba(229, 168, 177, 0.8); /* Ombra rosa che attira l'attenzione */
         }
 
         button {
