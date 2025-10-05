@@ -14,25 +14,31 @@
             padding: 0;
             background-color: #DFDDF2;
             height: 100vh;
-            /* ✨ LA SOLUZIONE CHIAVE: Impedisce che il contenuto non attivo forzi lo scorrimento. */
-            overflow: hidden; 
+            width: 100vw; /* Assicuriamo che il body occupi l'intera larghezza */
+            overflow: hidden; /* Nasconde le barre di scorrimento: cruciale per la navigazione a "pagine" */
+            display: flex; /* Permette al body di gestire il layout delle sezioni */
+            flex-direction: column; /* Le sezioni si disporranno verticalmente nel body */
+            justify-content: center; /* Centra il contenuto del body */
+            align-items: center; /* Centra il contenuto del body */
         }
         
         /* Stile per tutte le sezioni */
         #pagina-iniziale, #pagina-emoji, #messaggio1, #messaggio2, #messaggio3 {
             min-height: 100vh;
-            width: 100vw; /* Assicura che occupi tutta la larghezza */
-            display: flex;
+            width: 100vw; /* Ogni sezione occupa tutta la larghezza */
+            display: none; /* Inizialmente tutte nascoste */
             flex-direction: column; 
             justify-content: center;
             align-items: center;
-            position: relative; 
+            position: absolute; /* Posizionamento assoluto per sovrapporre le sezioni */
+            top: 0;
+            left: 0;
+            /* ✨ FIX: Evita che le sezioni si riducano o si spostino */
+            flex-shrink: 0; 
+            background-color: #DFDDF2; /* Garantiamo che ogni sezione abbia il suo sfondo */
         }
         
-        /* Nascondi tutte le sezioni tranne quella attiva */
-        .sezione {
-            display: none;
-        }
+        /* La sezione attiva viene mostrata */
         .sezione.attiva {
             display: flex;
         }
@@ -43,14 +49,15 @@
             font-family: 'Pacifico', cursive;
             color: #E5A8B1;
             margin-bottom: 30px; 
+            z-index: 1; /* Assicuriamo che il titolo sia sopra allo sfondo */
         }
         
         /* Stile generale per elementi cliccabili */
         .pulsante {
             cursor: pointer;
             margin: 20px;
-            z-index: 10; 
-            transition: transform 0.1s ease; 
+            z-index: 2; /* I pulsanti devono essere sopra tutti gli altri elementi */
+            transition: transform 0.1s ease, box-shadow 0.3s ease; 
         }
 
         /* Effetto di reazione al mouse/tocco */
@@ -60,21 +67,31 @@
         
         img {
             width: 180px; 
-            border: 4px solid #DFDDF2; 
             border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+            box-shadow: 0 0 0 3px #F6B6C6; /* Cornice "neon" rosa */
         }
 
-        /* Stile specifico per il gattino iniziale */
+        /* Stile specifico per il gattino iniziale (più grande e con effetto hover) */
         #pagina-iniziale img {
             width: 220px;
-            border: 5px solid transparent; 
             transition: all 0.3s ease;
         }
         
         /* Effetto visivo quando passi il mouse sul gattino */
         #pagina-iniziale img:hover {
-            box-shadow: 0 0 20px rgba(229, 168, 177, 0.8);
+            box-shadow: 0 0 15px 5px #F6B6C6; /* Ombra rosa più accentuata al hover */
+        }
+
+        /* Stile per l'emoji 🙀 in pagina-emoji */
+        #pagina-emoji .pulsante[style] { /* Selettore più specifico per l'emoji con stile inline */
+            font-size: 4em;
+            box-shadow: 0 0 0 3px #F6B6C6; /* Cornice "neon" rosa per l'emoji */
+            border-radius: 10px; /* Per coerenza */
+            padding: 5px 10px; /* Aggiungi un po' di padding all'emoji per la cornice */
+            background-color: rgba(255, 255, 255, 0.5); /* Sfondo leggermente visibile per la cornice */
+        }
+        #pagina-emoji .pulsante[style]:hover {
+            box-shadow: 0 0 15px 5px #F6B6C6; /* Ombra rosa più accentuata al hover per l'emoji */
         }
 
         button {
@@ -85,10 +102,13 @@
             color: white; 
             border: none;
             border-radius: 10px;
-            transition: background-color 0.3s;
+            box-shadow: 0 0 0 3px #F6B6C6; /* Cornice "neon" rosa per i bottoni */
+            transition: background-color 0.3s, box-shadow 0.3s ease;
+            z-index: 2; /* I bottoni devono essere sopra */
         }
         button:hover {
             background-color: #d1979d; 
+            box-shadow: 0 0 15px 5px #F6B6C6; /* Ombra rosa più accentuata al hover */
         }
     </style>
 </head>
@@ -133,6 +153,11 @@
             // Mostra la sezione desiderata
             document.getElementById(id).classList.add('attiva');
         }
+
+        // Mostra la pagina iniziale al caricamento
+        document.addEventListener('DOMContentLoaded', () => {
+            mostraSezione('pagina-iniziale');
+        });
     </script>
 </body>
 </html>
